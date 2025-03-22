@@ -1,10 +1,6 @@
 import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/database.js';
 
-import {Resumen_Horas_Estudiantes} from './Resumen_Horas_Estudiantes_schema.js';
-import { Horas_Extraordinarias } from './Horas_Extraordinarias_schema.js';
-import { Periodo } from "./Periodo_schema.js";
-import { UsuarioXPeriodo } from "./UsuarioXPeriodo_schema.js";
 /*
 CREATE TABLE Usuario (
     Usuario_Cedula VARCHAR(13) PRIMARY KEY,
@@ -38,7 +34,7 @@ export const Usuario = sequelize.define('Usuario', {
         type: DataTypes.STRING(50)
     },
     Usuario_Huella: {
-        type: DataTypes.BLOB
+        type: DataTypes.BLOB('long')
     },
     Usuario_contrasenia: {
         type: DataTypes.STRING(64)

@@ -21,6 +21,49 @@ export class UsuarioXPeriodoController {
         }
     }
 
+    static async getUsuariosAndPeriodosAll(req, res) {
+        try {
+            const usuariosAndPeriodos = await UsuarioXPeriodoModel.getUsuariosAndPeriodosAll();
+            res.json(usuariosAndPeriodos);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    }
+
+    static async getUsuariosAndPeriodosByPeriodo(req, res) {
+        const { periodoId } = req.params;
+        console.log("getUsuariosAndPeriodosByPeriodo");
+        try {
+            const usuariosAndPeriodos = await UsuarioXPeriodoModel.getUsuariosAndPeriodosByPeriodo(periodoId);
+            res.json(usuariosAndPeriodos);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    }
+
+    static async getByPeriodoAndCedula(req, res) {
+        const { periodoId, cedula } = req.params;
+        try {
+            const usuarioXPeriodo = await UsuarioXPeriodoModel.getByPeriodoAndCedula(periodoId, cedula);
+            if (usuarioXPeriodo) return res.json(usuarioXPeriodo)
+            res.status(404).json({ message: "UsuarioXPeriodo no encontrado" });
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    }
+    
+    static async getUsuariosByPeriodoAndArea(req, res) {
+        const { periodoId, area } = req.params;
+        try {
+            const usuarios = await UsuarioXPeriodoModel.getUsuariosByPeriodoAndArea(periodoId, area);
+            if (usuarios) return res.json(usuarios)
+            res.status(404).json({ message: "Usuarios no encontrados" });
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    }
+    
     static async create(req, res) {
         try {
             const newUsuarioXPeriodo = await UsuarioXPeriodoModel.create(req.body);

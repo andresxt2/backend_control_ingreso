@@ -12,12 +12,20 @@ CREATE TABLE Periodos (
     Periodo_IsDeleted BOOLEAN DEFAULT FALSE
 );
 */
-
+//TODO: Agregar PeriodoNombre con inicializacion en bd
 export const Periodo = sequelize.define('Periodo', {
     Periodo_ID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+    PeriodoNombre: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+    },
+    PeriodoTipo: {
+        type: DataTypes.STRING(50),
+        allowNull:false
     },
     Periodo_Inicio: {
         type: DataTypes.DATE,

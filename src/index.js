@@ -9,13 +9,14 @@ import { Horas_Extraordinarias } from "./schemas/Horas_Extraordinarias_schema.js
 import { Seguimiento_Semanal } from "./schemas/Seguimiento_Semanal_schema.js";
 import { Horarios } from "./schemas/Horario_schema.js";
 import { Alerta } from "./schemas/Alerta_schema.js";
+import { Parametro_Horario } from "./schemas/Parametro_Horario_schema.js";
 
 // 🔹 Importa el archivo de asociaciones después de los modelos
 import "./schemas/associations.js";
 
 async function main(){
    try {
-      await sequelize.sync();
+      await sequelize.sync(/*{force: true}*/);
       app.listen(3000, () => {
          console.log("Server running on port 3000")
       })

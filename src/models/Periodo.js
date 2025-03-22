@@ -23,8 +23,10 @@ export class PeriodoModel {
     }
 
     /** 🔹 Crear un nuevo período */
+    //TODO: BULK CREATE
     static async create(data) {
         try {
+            console.log(data);
             return await Periodo.create(data);
         } catch (error) {
             throw new Error(`Error al crear período: ${error.message}`);

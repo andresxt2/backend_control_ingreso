@@ -2,8 +2,10 @@ import cors from 'cors'
 
 //origfenes permitidos para la api
 const ACCEPTED_ORIGINS = [
-  'http://localhost:8080'//ejemplo...
+  'http://localhost:8080',
+  'http://localhost:5173',
 ]
+
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => cors({
   origin: (origin, callback) => {
@@ -16,5 +18,6 @@ export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => c
     }
 
     return callback(new Error('Not allowed by CORS'))
-  }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // 🔥 Agregar PUT
 })

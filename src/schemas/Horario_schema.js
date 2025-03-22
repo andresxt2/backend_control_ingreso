@@ -26,17 +26,20 @@ export const Horarios = sequelize.define('Horarios', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    Horario_Dia: {
+    Horario_Dia_Lunes: {
         type: DataTypes.INTEGER,
-        allowNull: false
     },
-    Horario_Entrada: {
-        type: DataTypes.TIME,
-        allowNull: false
+    Horario_Dia_Martes: {
+        type: DataTypes.INTEGER,
     },
-    Horario_Salida: {
-        type: DataTypes.TIME,
-        allowNull: false
+    Horario_Dia_Miercoles: {
+        type: DataTypes.INTEGER,
+    },
+    Horario_Dia_Jueves: {
+        type: DataTypes.INTEGER,
+    },
+    Horario_Dia_Viernes: {
+        type: DataTypes.INTEGER,
     },
     Horario_Modalidad: {
         type: DataTypes.STRING(30),
