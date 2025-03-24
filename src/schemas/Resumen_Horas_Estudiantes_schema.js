@@ -1,5 +1,6 @@
 import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/database.js';
+import { Usuario } from './Usuario_schema.js';
 
 /*
 CREATE TABLE Resumen_Horas_Estudiantes (
@@ -20,6 +21,10 @@ export const Resumen_Horas_Estudiantes = sequelize.define('Resumen_Horas_Estudia
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+    Usuario_Cedula: {
+        type: DataTypes.STRING(13),
+        allowNull: false
     },
     Resumen_Inicio: {
         type: DataTypes.DATE,

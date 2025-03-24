@@ -5,7 +5,7 @@ import { Resumen_Horas_Estudiantes } from "./Resumen_Horas_Estudiantes_schema.js
 import { Horas_Extraordinarias } from "./Horas_Extraordinarias_schema.js";
 import { Seguimiento_Semanal } from "./Seguimiento_Semanal_schema.js";
 import { Horarios } from "./Horario_schema.js";
-import { Registro_Asistencia } from "./Registro_Asistencia.js";
+import { Registro_Asistencia } from "./Registro_Asistencia_Schema.js";
 
 /* 🔹 Relación N:M entre Usuario y Periodo a través de UsuarioXPeriodo */
 Usuario.belongsToMany(Periodo, { 
