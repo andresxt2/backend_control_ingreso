@@ -9,12 +9,13 @@ import {Seguimiento_SemanalRouter} from './routes/Seguimiento_Semanal_Routes.js'
 import { AlertaRouter } from './routes/Alerta_Routes.js'
 import { corsMiddleware } from './middlewares/cors.js'
 import { Parametro_HorarioRouter } from './routes/Parametro_Horario_Routes.js'
+import { Registro_Asistencias_Routes } from './routes/Registro_Asistencia_Routes.js'
 
 const app = express()
 
 // middleware
 app.use(express.json())
 app.use(corsMiddleware())
-app.use(UsuariosRouter, PeriodoRouter,UsuarioXPeriodoRouter,ResumenHorasRouter,HorarioRouter,HorasExtraordinariasRouter,Seguimiento_SemanalRouter,AlertaRouter, Parametro_HorarioRouter)
+app.use(UsuariosRouter, PeriodoRouter,UsuarioXPeriodoRouter,ResumenHorasRouter,HorarioRouter,HorasExtraordinariasRouter,Seguimiento_SemanalRouter,AlertaRouter, Parametro_HorarioRouter, Registro_Asistencias_Routes)
 
 export default app

@@ -72,7 +72,7 @@ export class Resumen_Horas_EstudiantesModel {
     /** 🔹 Obtener todos los resúmenes de un usuario */
     static async getResumen_Horas_EstudiantesByUser(id) {
         try {
-            return await Resumen_Horas_Estudiantes.findAll({
+            return await Resumen_Horas_Estudiantes.findOne({
                 where: { Usuario_Cedula: id, Resumen_IsDeleted: false }
             });
         } catch (error) {

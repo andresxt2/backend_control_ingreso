@@ -6,6 +6,7 @@ export const sequelize = new Sequelize(
     'ltic', 
     {
         host: 'localhost',
-        dialect: 'mysql'
+        dialect: 'mysql',
+        timezone: 'America/Guayaquil' // Para Ecuador (Guayaquil, Quito, etc.)
     }
 );

@@ -1,6 +1,5 @@
 import {DataTypes} from 'sequelize';
 import {sequelize} from '../database/database.js';
-import { Usuario } from './Usuario_schema.js';
 
 /*
 CREATE TABLE Resumen_Horas_Estudiantes (
@@ -32,16 +31,19 @@ export const Resumen_Horas_Estudiantes = sequelize.define('Resumen_Horas_Estudia
     },
     Resumen_Fin: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: true
     },
     Resumen_Horas_Adicionales: {
-        type: DataTypes.DECIMAL(5,2)
+        type: DataTypes.DECIMAL(5,2),
+        defaultValue: 0
     },
     Resumen_Horas_Reducidas: {
-        type: DataTypes.DECIMAL(5,2)
+        type: DataTypes.DECIMAL(5,2),
+        defaultValue: 0
     },
     Resumen_Horas_Totales: {
-        type: DataTypes.DECIMAL(5,2)
+        type: DataTypes.DECIMAL(5,2),
+        defaultValue: 0
     },
     Resumen_IsDeleted: {
         type: DataTypes.BOOLEAN,

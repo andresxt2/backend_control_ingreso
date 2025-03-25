@@ -1,11 +1,11 @@
-import { Registro_Asistencia } from "../models/Registro_Asistencia";
+import { Registro_AsistenciaModel } from "../models/Registro_Asistencia.js";
 
 export class Registro_Asistencia_Controller {
     
         //Obtener registros activos
         static async getRegistros(req, res) {
             try {
-                const registros = await Registro_Asistencia.getRegistros();
+                const registros = await Registro_AsistenciaModel.getRegistros();
                 res.status(200).json(registros);
             } catch (error) {
                 res.status(500).json({ message: error.message });
@@ -16,7 +16,7 @@ export class Registro_Asistencia_Controller {
         static async getById(req, res) {
             try {
                 const id = req.params.id;
-                const registro = await Registro_Asistencia.getById(id);
+                const registro = await Registro_AsistenciaModel.getById(id);
     
                 if (!registro) {
                     res.status(404).json({ message: "Registro de asistencia no encontrado" });
@@ -32,7 +32,7 @@ export class Registro_Asistencia_Controller {
         static async create(req, res) {
             try {
                 const data = req.body;
-                const registro = await Registro_Asistencia.create(data);
+                const registro = await Registro_AsistenciaModel.create(data);
                 res.status(201).json(registro);
             } catch (error) {
                 res.status(500).json({ message: error.message });
@@ -44,7 +44,7 @@ export class Registro_Asistencia_Controller {
             try {
                 const id = req.params.id;
                 const data = req.body;
-                const registro = await Registro_Asistencia.update(id, data);
+                const registro = await Registro_AsistenciaModel.update(id, data);
     
                 if (!registro) {
                     res.status(404).json({ message: "Registro de asistencia no encontrado" });
@@ -60,7 +60,7 @@ export class Registro_Asistencia_Controller {
         static async delete(req, res) {
             try {
                 const id = req.params.id;
-                const registro = await Registro_Asistencia.delete(id);
+                const registro = await Registro_AsistenciaModel.delete(id);
     
                 if (!registro) {
                     res.status(404).json({ message: "Registro de asistencia no encontrado" });
@@ -74,17 +74,17 @@ export class Registro_Asistencia_Controller {
 
         static async getRegistroAbierto(req, res) {
             try {
-                const usuarioXPeriodoId = req.params.usuarioXPeriodoId;
-                const fecha = req.params.fecha;
-                const registro = await Registro_Asistencia.getRegistroAbierto(usuarioXPeriodoId, fecha);
-    
-                if (!registro) {
-                    res.status(404).json({ message: "Registro de asistencia no encontrado" });
-                } else {
-                    res.status(200).json(registro);
-                }
+              const usuarioXPeriodoId = req.query.usuarioxPeriodoId; // cambiar de req.params a req.query
+              const fecha = req.query.fecha; // idem
+              const registro = await Registro_AsistenciaModel.getRegistroAbierto(usuarioXPeriodoId, fecha);
+          
+              if (!registro) {
+                res.status(404).json({ message: "Registro de asistencia no encontrado" });
+              } else {
+                res.status(200).json(registro);
+              }
             } catch (error) {
-                res.status(500).json({ message: error.message });
+              res.status(500).json({ message: error.message });
             }
-        }
+          }
     }

@@ -22,6 +22,7 @@ UsuarioXPeriodoRouter.get('/usuarioXPeriodo/:periodoId/:cedula', UsuarioXPeriodo
 // 🔹 Obtener todos los usuarios por periodo y área
 UsuarioXPeriodoRouter.get('/usuarioXPeriodo/periodo/:periodoId/area/:area', UsuarioXPeriodoController.getUsuariosByPeriodoAndArea);
 
+
 // 🔹 Crear un nuevo registro
 UsuarioXPeriodoRouter.post('/usuarioXPeriodo', UsuarioXPeriodoController.create);
 

@@ -1,6 +1,8 @@
-import { Registro_Asistencia } from "../schemas/Registro_Asistencia_Schema";
+import { Registro_Asistencia } from "../schemas/Registro_Asistencia_Schema.js";
+import { Op } from "sequelize";
 
-export class Registro_Asistencia {
+
+export class Registro_AsistenciaModel {
  
     //Obtener registros activos
     static async getRegistros() {
@@ -29,6 +31,7 @@ export class Registro_Asistencia {
         try {
             return await Registro_Asistencia.create(data);
         } catch (error) {
+            console.error(`❌ Error al crear registro de asistencia: ${error.message}`);
             throw new Error(`Error al crear registro de asistencia: ${error.message}`);
         }
     }
@@ -74,25 +77,30 @@ export class Registro_Asistencia {
     // Si se pasa la fecha, se filtra entre el inicio y fin del día
     static async getRegistroAbierto(usuarioXPeriodoId, fecha) {
         try {
-            const whereClause = {
-                usuarioXPeriodoId: usuarioXPeriodoId,
-                Registro_IsDeleted: false,
-                Registro_Salida: null
-            };
+            //fecha quemada para pruebas 24 de marzo 2025
+            //fecha = '2025-03-24';
 
-            if (fecha) {
-                const start = new Date(fecha);
-                start.setHours(0, 0, 0, 0);
-                const end = new Date(fecha);
-                end.setHours(23, 59, 59, 999);
-                whereClause.Registro_fecha = { [Op.between]: [start, end] };
-            }
+            fecha = '2025-03-24';
 
-            return await Registro_Asistencia.findOne({ where: whereClause });
+          // Asumimos que 'fecha' es una cadena "YYYY-MM-DD" en UTC
+          const start = new Date(fecha);
+          start.setUTCHours(0, 0, 0, 0);
+          const end = new Date(fecha);
+          end.setUTCHours(23, 59, 59, 999);
+      
+          const whereClause = {
+            UsuarioXPeriodo_ID: usuarioXPeriodoId,  // Nombre exacto del campo en el modelo
+            Registro_IsDeleted: false,
+            Registro_Salida: null,
+            Registro_Entrada: { [Op.between]: [start, end] }
+          };
+          console.log('Where:', whereClause);
+      
+          return await Registro_Asistencia.findOne({ where: whereClause });
         } catch (error) {
-            throw new Error(`Error al obtener registro abierto: ${error.message}`);
+            console.log('Error:', error);
+          throw new Error(`Error al obtener registro abierto: ${error.message}`);
         }
-    }
-
-    
+      }
+      
 }

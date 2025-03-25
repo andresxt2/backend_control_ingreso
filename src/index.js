@@ -19,6 +19,8 @@ async function main(){
       await sequelize.sync(/*{force: true}*/);
       app.listen(3000, () => {
          console.log("Server running on port 3000")
+        // mensaje indicando hora actual dels erver
+         console.log(new Date().toLocaleTimeString());
       })
    } catch (error) {
       console.error("Error starting server: ", error)

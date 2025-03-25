@@ -36,6 +36,10 @@ export const Registro_Asistencia = sequelize.define('Registro_Asistencia', {
         type: DataTypes.STRING(100),
         allowNull: false
     },
+    Registro_Atraso: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true
+    },
     Registro_Observaciones: {
         type: DataTypes.STRING(300),
         allowNull: true
